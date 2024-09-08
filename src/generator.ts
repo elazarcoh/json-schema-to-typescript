@@ -331,10 +331,7 @@ function generateComment(comment?: string, deprecated?: boolean): string {
 }
 
 function generateJSDoc(jsdoc: Record<string, any>): string {
-  return ['/**', ...Object.entries(jsdoc).map(([k, v])=> `* @${k} ${JSON.stringify(v)}`), ' */'].join('\n')
-}
-function generateJSDoc(jsdoc: Record<string, any>): string {
-  return ['/**', ...Object.entries(jsdoc).map(([k, v])=> `* @${k} ${JSON.stringify(v)}`), ' */'].join('\n')
+  return ['/**', ...Object.entries(jsdoc).map(([k, v]) => `* @${k} ${JSON.stringify(v)}`), ' */'].join('\n')
 }
 
 function generateStandaloneEnum(ast: TEnum, options: Options): string {

@@ -121,8 +121,8 @@ function parseNonLiteral(
 ): AST {
   const definitions = getDefinitionsMemoized(getRootSchema(schema as any)) // TODO
   const keyNameFromDefinition = findKey(definitions, _ => _ === schema)
-  const jsdoc = parseTags(schema, options.jsdocTags);
-  const jsdocOrComment = isEmpty(jsdoc) ? { comment: schema.description } : { jsdoc: jsdoc };
+  const jsdoc = parseTags(schema, options.jsdocTags)
+  const jsdocOrComment = isEmpty(jsdoc) ? {comment: schema.description} : {jsdoc: jsdoc}
 
   switch (type) {
     case 'ALL_OF':
@@ -337,8 +337,10 @@ function standaloneName(
   }
 }
 
-function parseTags(schema: { [key: string]: any }, tags: string[]): { [key: string]: any } {
-  return tags.map(prop => [prop, schema[prop]]).reduce((acc, [key, val]) => (val !== undefined ? { ...acc, [key]: val } : acc), {});
+function parseTags(schema: {[key: string]: any}, tags: string[]): {[key: string]: any} {
+  return tags
+    .map(prop => [prop, schema[prop]])
+    .reduce((acc, [key, val]) => (val !== undefined ? {...acc, [key]: val} : acc), {})
 }
 
 function newInterface(
@@ -350,8 +352,8 @@ function newInterface(
   keyNameFromDefinition?: string,
 ): TInterface {
   const name = standaloneName(schema, keyNameFromDefinition, usedNames, options)!
-  const jsdoc = parseTags(schema, options.jsdocTags);
-  const jsdocOrComment = isEmpty(jsdoc) ? { comment: schema.description } : { jsdoc: jsdoc };
+  const jsdoc = parseTags(schema, options.jsdocTags)
+  const jsdocOrComment = isEmpty(jsdoc) ? {comment: schema.description} : {jsdoc: jsdoc}
   return {
     ...jsdocOrComment,
     deprecated: schema.deprecated,

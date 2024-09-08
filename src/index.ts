@@ -87,7 +87,7 @@ export interface Options {
   unknownAny: boolean
   /**
    * JSDoc tags to parse from the schema. Will be prepended to each generated type in the comment block (as `@tag [tagValue]`).
-   */ 
+   */
   jsdocTags: string[]
 }
 
